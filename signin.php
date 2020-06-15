@@ -16,7 +16,7 @@ if($qry1)
 }
 else
 {
-    if ($email=="admin@mail.com" and $pwd=="123456")
+    if ($email=="admin@gmail.com" and $pwd=="123456")
     {
         $keys="admin";
         $_SESSION['log']=$keys;

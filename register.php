@@ -19,7 +19,7 @@ file_put_contents($file, $uid);
 if($qry1==0 and $passwrd==$repasswrd)
 {
     $sql = mysqli_query($con,"INSERT INTO user (name, email, password, contact, aadhar, address, useruid) VALUES ('$name', '$email', '$passwrd', '$contact' , '$aadhar', '$address', '$uid') ")or die(mysqli_error($con));
-    $qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' and password='$passwrd' ")or die(mysqli_error($con));
+    $qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' and password='$passwrd' ") or die(mysqli_error($con));
     session_start();
     $row = mysqli_fetch_array($qry);
     $_SESSION['log']=$row;
