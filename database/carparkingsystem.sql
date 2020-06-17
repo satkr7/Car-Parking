@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Nov 17, 2018 at 01:21 PM
--- Server version: 5.7.21
--- PHP Version: 7.2.4
+-- Host: localhost:3307
+-- Generation Time: Jun 17, 2020 at 06:15 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `shivani`
+-- Database: `carparkingsystem`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +27,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `logtable`
 --
 
-DROP TABLE IF EXISTS `logtable`;
-CREATE TABLE IF NOT EXISTS `logtable` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `logtable` (
+  `id` int(11) NOT NULL,
   `useruid` text NOT NULL,
   `lotname` text NOT NULL,
   `carno` text NOT NULL,
@@ -39,19 +37,18 @@ CREATE TABLE IF NOT EXISTS `logtable` (
   `otp2` text NOT NULL,
   `totime` datetime NOT NULL,
   `payment` text NOT NULL,
-  `status` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logtable`
 --
 
 INSERT INTO `logtable` (`id`, `useruid`, `lotname`, `carno`, `otp1`, `fromtime`, `otp2`, `totime`, `payment`, `status`) VALUES
-(1, '6', 'P1', 'WB-AB-1001', '379089', '2018-04-07 14:06:59', '512848', '2018-04-07 14:19:57', 'Paid', 'Left'),
-(2, '6', 'P5', 'WB-A2-1011', '121533', '2018-04-07 17:02:43', '874472', '2018-04-07 17:16:49', 'Paid', 'Left'),
-(3, '6', 'P7', 'WB-AB-1001', '480334', '2018-04-07 17:20:42', '212582', '2018-04-07 17:21:10', 'Paid', 'Left'),
-(4, '6', 'P9', 'WB-A2-1011', '317453', '2018-04-07 17:37:26', '342752', '2018-04-07 17:45:29', 'Paid', 'Left');
+(5, '11', 'P3', '7704', '830535', '2020-06-16 15:10:13', '716248', '2020-06-16 15:11:21', 'Paid', 'Left'),
+(6, '11', 'P1', '7704', '404016', '2020-06-16 15:22:34', '204479', '2020-06-16 15:25:12', 'Paid', 'Left'),
+(7, '11', 'P1', '7404', '428748', '2020-06-16 16:06:51', '129884', '2020-06-16 16:10:40', 'Paid', 'Left'),
+(8, '10', 'P7', '1234', '803346', '2020-06-16 16:08:43', '177483', '2020-06-16 16:11:14', 'Paid', 'Left');
 
 -- --------------------------------------------------------
 
@@ -59,13 +56,11 @@ INSERT INTO `logtable` (`id`, `useruid`, `lotname`, `carno`, `otp1`, `fromtime`,
 -- Table structure for table `lot`
 --
 
-DROP TABLE IF EXISTS `lot`;
-CREATE TABLE IF NOT EXISTS `lot` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lot` (
+  `id` int(11) NOT NULL,
   `lotname` text NOT NULL,
-  `status` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lot`
@@ -89,9 +84,8 @@ INSERT INTO `lot` (`id`, `lotname`, `status`) VALUES
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
@@ -99,15 +93,61 @@ CREATE TABLE IF NOT EXISTS `user` (
   `address` text NOT NULL,
   `aadhar` text NOT NULL,
   `useruid` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `type` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `contact`, `address`, `aadhar`, `useruid`) VALUES
-(1, 'Piyushh', 'email@gmail.com', 'MTIzNA==', '9830768030', '152/6 hardutt Rai Chamaria, A Block', '1234567812345678', 6);
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `contact`, `address`, `aadhar`, `useruid`, `type`) VALUES
+(2, 'Sambit', 'sambit@gmail.com', 'c2Ft', '1234567890', 'address', '1234567', 10, 'customer'),
+(3, 'Satyam Kumar', 'satyam@gmail.com', 'c2F0', '9608794980', 'bokaro', '1234567', 11, 'customer'),
+(4, 'Samiul', 'samiul@gmail.com', 'c2Ft', '1234567890', 'kolkata', '1234567', 12, 'owner');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `logtable`
+--
+ALTER TABLE `logtable`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lot`
+--
+ALTER TABLE `lot`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `logtable`
+--
+ALTER TABLE `logtable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `lot`
+--
+ALTER TABLE `lot`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

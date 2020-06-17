@@ -9,10 +9,6 @@ if($con)
 	{
 		echo "Could not connect to database".mysqli_error($con);
 	}
-	else
-	{
-		echo "Connected";
-	}
 }
 else
 {

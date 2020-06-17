@@ -116,6 +116,38 @@ else if($_SESSION['log1']=="admin")
     </header>
     <?php
 }
+else if($_SESSION['log1']=="owner")
+{
+    ?>
+    <header style="background: black;">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <a href="dashboard.php"><img src="img/cps.png" style="width: 300px;margin-top: 10px;" /></img></a>
+                <!-- Uncomment below if you prefer to use a text image -->
+                <!--<h1><a href="index.php">Header 1</a></h1>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+
+                    <li class="menu-has-children"><a>Add new Lot</a>
+                    </li>
+
+                    <li class="menu-has-children"><a>Remove Lot</a>
+                    </li>
+
+                    <li class="menu-has-children"><a href="logout.php">Logout</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <!-- #nav-menu-container -->
+        </div>
+    </header>
+    <?php
+}
 else
 {
     ?>

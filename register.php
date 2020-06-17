@@ -5,6 +5,7 @@ $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
 $address = htmlspecialchars($_POST['address'], ENT_QUOTES, 'UTF-8');
 $aadhar = htmlspecialchars($_POST['aadhar'], ENT_QUOTES, 'UTF-8');
 $contact = htmlspecialchars($_POST['contact'], ENT_QUOTES, 'UTF-8');
+$type = htmlspecialchars($_POST['accounttype'], ENT_QUOTES, 'UTF-8');
 $passwrd = base64_encode($_POST['pass']);
 $repasswrd = base64_encode($_POST['repass']);
 $qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' ");
@@ -18,7 +19,7 @@ $uid = $uniq + 1 ;
 file_put_contents($file, $uid);
 if($qry1==0 and $passwrd==$repasswrd)
 {
-    $sql = mysqli_query($con,"INSERT INTO user (name, email, password, contact, aadhar, address, useruid) VALUES ('$name', '$email', '$passwrd', '$contact' , '$aadhar', '$address', '$uid') ")or die(mysqli_error($con));
+    $sql = mysqli_query($con,"INSERT INTO user (name, email, password, contact, aadhar, address, useruid, type) VALUES ('$name', '$email', '$passwrd', '$contact' , '$aadhar', '$address', '$uid', '$type') ")or die(mysqli_error($con));
     $qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' and password='$passwrd' ") or die(mysqli_error($con));
     session_start();
     $row = mysqli_fetch_array($qry);

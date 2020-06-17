@@ -99,6 +99,14 @@
                     <input class="input100" type="password" name="repass" placeholder="*************" required="required"/>
                     <span class="focus-input100"></span>
                 </div>
+				
+				<div class="wrap-input100 validate-input" data-validate="User Type is required">
+					<select class="input100" id="accounttype" name="accounttype"/>
+					<option value="none">Select Account Type</option>
+					<option value="customer">Customer</option>
+					<option value="owner">Garage Owner</option>
+                    <span class="focus-input100"></span>
+                </div>
 
                 <div class="flex-m w-full p-b-33">
                     <div class="contact100-form-checkbox">

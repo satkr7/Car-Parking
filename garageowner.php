@@ -2,14 +2,13 @@
 session_start();
 include('config.php');
 include('sessioncheck.php');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Free Lots</title>
+    <title>Admin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -51,11 +50,12 @@ include('sessioncheck.php');
             border: 1px solid #1a1a1a;
             width: 100%;
             text-align: center;
+            vertical-align: middle;
         }
-        td{
-            height: 250px;
-        }
-        a{
+        th{
+            background: grey;
+            text-align: center;
+            vertical-align: middle;
             color: skyblue;
         }
         .dash{
@@ -83,68 +83,84 @@ include('sessioncheck.php');
           </span>
             <table rules="all">
                 <tr>
-                    <?php
-                    $qry = mysqli_query($con,"SELECT * FROM lot ");
-                    $c=0;
-                    while($row = mysqli_fetch_array($qry) and $c < 5)
-                    {
-                        $c = $c+1;
-                        if($row['status']=='Free')
-                        {
-                            ?>
-                            <td>
-                                <span><a href="book.php">Book Now<br>Parking Lot - <?php echo $row['lotname']; ?></a></span>
-                            </td>
-                            <?php
-                        }
-                        else if($row['status']=='Leaving')
-                        {
-                            ?>
-                            <td style="background: #1a1a1a;">
-                                <span><a href="book.php">Leaving Soon<br>Parking Lot - <?php echo $row['lotname']; ?></a></span>
-                            </td>
-                            <?php
-                        }
-                        else
-                        {
-                            ?>
-                            <td style="background: #1a1a1a;">
-                                <span><a href="#">Booked<br>Parking Lot - <?php echo $row['lotname']; ?></a></span>
-                            </td>
-                            <?php
-                        }
-                    }
-                    ?>
+                    <th>
+                        Lot Name
+                    </th>
+                    <th>
+                        Status
+                    </th>
                 </tr>
+                <?php
+				$uid = $_SESSION['log']['useruid'];
+                $qry = mysqli_query($con,"SELECT * FROM lot where ownerid='$uid'");
+                while($row = mysqli_fetch_array($qry))
+                {
+                    ?>
+                    <tr>
+                        <td>
+                            <span><?php echo $row['lotname']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row['status']; ?></span>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
+            <span class="login100-form-title p-b-53">
+            Booking History
+          </span>
+            <table rules="all">
                 <tr>
-                    <?php
-                    $qry = mysqli_query($con,"SELECT * FROM lot ");
-                    $c=0;
-                    while($row = mysqli_fetch_array($qry) )
-                    {
-                        $c = $c+1;
-                        if($c > 5)
-                        {
-                            if($row['status']=='Free')
-                            {
-                                ?>
-                                <td>
-                                    <span><a href="book.php">Book Now<br>Parking Lot - <?php echo $row['lotname']; ?></a></span>
-                                </td>
-                                <?php
-                            }
-                            else
-                            {
-                                ?>
-                                <td style="background: #1a1a1a;">
-                                    <span><a href="#">Booked<br>Parking Lot - <?php echo $row['lotname']; ?></a></span>
-                                </td>
-                                <?php
-                            }
-                        }
-                    }
-                    ?>
+                    <th>
+                        User UID
+                    </th>
+                    <th>
+                        Car No.
+                    </th>
+                    <th>
+                        Lot Name
+                    </th>
+                    <th>
+                        From
+                    </th>
+                    <th>
+                        To
+                    </th>
+                    <th>
+                        Status
+                    </th>
                 </tr>
+                <?php
+				$uid = $_SESSION['log']['useruid'];
+                $qry1 = mysqli_query($con,"SELECT * FROM logtable");
+                while($row1 = mysqli_fetch_array($qry1))
+                {
+                    ?>
+                    <tr>
+                        <td>
+                            <span><?php echo $row1['useruid']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['carno']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['lotname']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['fromtime']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['totime']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['status']; ?></span>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
     </div>

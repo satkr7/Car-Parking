@@ -53,12 +53,20 @@ include('config.php');
 <!-- #header -->
 
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('img/carbgdash.jpg');">
-        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+    <div class="container-login100" style="background-image: url('img/carbgdash1.jpg');">
+        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-23">
             <form class="login100-form validate-form flex-sb flex-w" method="post" action="signin.php">
           <span class="login100-form-title p-b-53">
             Sign In
           </span>
+		  
+				<div class="wrap-input100 validate-input" data-validate="User Type is required">
+					<select class="input100" id="accounttype" name="accounttype"/>
+					<option value="none">Select Account Type</option>
+					<option value="customer">Customer</option>
+					<option value="owner">Garage Owner</option>
+                    <span class="focus-input100"></span>
+                </div>
 
                 <div class="p-t-31 p-b-9">
             <span class="txt1">

@@ -4,15 +4,25 @@ include('config.php');
 $email = $_POST['mail'];
 $pwd = $_POST['pass'];
 $passwrd = base64_encode($_POST['pass']);
-$qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' and password='$passwrd' ");
+$type = $_POST['accounttype'];
+
+$qry = mysqli_query($con,"SELECT * FROM user WHERE email='$email' and password='$passwrd' and type='$type'");
 $qry1 = mysqli_num_rows($qry);
-if($qry1)
+if($qry1 and $type=='customer')
 {
     $row = mysqli_fetch_array($qry);
     $_SESSION['log']=$row;
     $keys="user";
     $_SESSION['log1']=$keys;
     header("location:dashboard.php");
+}
+else if($qry1 and $type=='owner')
+{
+    $row = mysqli_fetch_array($qry);
+    $_SESSION['log']=$row;
+    $keys="owner";
+    $_SESSION['log1']=$keys;
+    header("location:garageowner.php");
 }
 else
 {
