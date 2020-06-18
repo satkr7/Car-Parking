@@ -10,7 +10,7 @@ $duration = $_POST['duration'];
 $cost = $duration * 2;
 $date = $_POST['datetimelocal'];
 
-$qry0 = mysqli_query($con,"SELECT * FROM garage ");
+$qry0 = mysqli_query($con,"SELECT * FROM garage where lotname='$garagelocation'");
 $row = mysqli_fetch_array($qry0);
 $lotnumber = $row['lots'];
 

@@ -93,7 +93,7 @@ include('sessioncheck.php');
                         </div>
                     </form>
 					<br>
-					<form class="login100-form validate-form" method="post" action="book.php">
+					<form class="login100-form validate-form" method="post" action="findgaragelocation.php">
                       
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
@@ -126,6 +126,19 @@ include('sessioncheck.php');
                                 <div class="login100-form-bgbtn"></div>
                                 <button class="login100-form-btn">
                                     Search Parking Lots
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+					<br>
+					<form class="login100-form validate-form" method="post" action="logout.php">
+                      
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Exit
                                 </button>
                             </div>
 

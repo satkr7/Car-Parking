@@ -9,7 +9,7 @@ include('sessioncheck.php');
 
 <head>
     <meta charset="utf-8">
-    <title>Fees</title>
+    <title>Payment Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -55,75 +55,35 @@ include('sessioncheck.php');
 <!-- #header -->
 
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('img/carbgdash.jpg');">
+    <div class="container-login100" style="background-image: url('img/carbgdash1.jpg');">
         <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
             <?php
             $uid = $_SESSION['log']['useruid'];
-            $qry = mysqli_query($con,"SELECT * FROM logtable WHERE useruid='$uid' ORDER BY id DESC");
-            $qry1 = mysqli_num_rows($qry);
-            if($qry1)
-            {
-                $row = mysqli_fetch_array($qry);
-                if($row['status']=='Left' and $row['payment']=='')
-                {
-                    ?>
-                    <form class="login100-form validate-form flex-sb flex-w" method="post" action="payment.php">
-          <span class="login100-form-title p-b-53">
-            Fee Generated
-          </span>
-
-                        <?php
-
-                        $from = $row['fromtime'];
-                        $to = $row['totime'];
-                        $id = $row['id'];
-                        $t1 = StrToTime ( $from );
-                        $t2 = StrToTime ( $to );
-                        $diff = $t2 - $t1;
-                        $hours = $diff / ( 60 * 60 );
-                        $fee = 60*$hours;
-                        $fee = round($fee, 0, PHP_ROUND_HALF_UP);
-                        ?>
+            $qry = mysqli_query($con,"SELECT * FROM booking WHERE userid='$uid' and status='Park'");
+			$amount = 0;
+			while($row = mysqli_fetch_array($qry))
+			{
+				$amount = $amount + $row['cost'];
+			}
+			?>
+				<form class="login100-form validate-form flex-sb flex-w" method="post" action="payment.php">
+					<span class="login100-form-title p-b-53">
+						Amount to Pay
+					</span>
 
                         <div class="wrap-input100 validate-input" >
-                            <input class="input100" type="text" name="fee" value="<?php echo $fee; ?>" readonly/>
+                            <input class="input100" type="text" name="amount" value="<?php echo $amount; ?>" readonly/>
                             <span class="focus-input100"></span>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                         <div class="container-login100-form-btn m-t-17">
                             <button class="login100-form-btn">
-                                Pay
+                                Proceed to Pay
                             </button>
                         </div>
 
-                    </form>
-                    <?php
-                }
-                else
-                {
-                    ?>
-                    <form class="login100-form validate-form flex-sb flex-w" method="post" action="payment.php">
-          <span class="login100-form-title p-b-53">
-            Car Still Parked!<br>(Enter OTP2)
-          </span>
-
-                    </form>
-                    <?php
-                }
-            }
-            else
-            {
-                ?>
-                <form class="login100-form validate-form flex-sb flex-w" method="post" action="payment.php">
-          <span class="login100-form-title p-b-53">
-            Car Still Parked! (Enter OTP2)
-          </span>
-
                 </form>
-                <?php
-            }
-            ?>
+			
         </div>
     </div>
 </div>

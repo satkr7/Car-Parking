@@ -55,19 +55,13 @@ else if($_SESSION['log1']=="user")
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
 
-                    <li class="menu-has-children"><a>About Us</a>
+                    <li class="menu-has-children"><a href="bookingUI.php">Booking</a>
                     </li>
 
-                    <li class="menu-has-children"><a href="dashboard.php">View Free Slot</a>
+                    <li class="menu-has-children"><a href="dashboard.php">Home</a>
                     </li>
 
-                    <li class="menu-has-children"><a href="book.php">Book Free Slot</a>
-                    </li>
-
-                    <li class="menu-has-children"><a href="verify.php">Verification</a>
-                    </li>
-
-                    <li class="menu-has-children"><a href="fee.php">Parking Fees</a>
+                    <li class="menu-has-children"><a href="book.php">Book Slot</a>
                     </li>
 
                     <li class="menu-has-children"><a>Contact Us</a>

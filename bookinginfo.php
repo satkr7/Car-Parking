@@ -77,9 +77,40 @@ include('sessioncheck.php');
 
 <div class="limiter">
     <div class="container-login100" style="background-image: url('img/carbgdash1.jpg');">
+	
+	<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+                    <form class="login100-form validate-form" method="post" action="findgaragelocation.php">
+                      
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Get Garage Location
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+					<br>
+					<form class="login100-form validate-form" method="post" action="fee.php">
+                      
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Pay
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+					
+            
+				</div>
+	
         <div class="wrap-login100 dash" style="width: 75%;">
             <span class="login100-form-title p-b-53">
-            Your Bookings
+            Ongoing Bookings
           </span>
             <table rules="all">
                 <tr>
@@ -103,6 +134,12 @@ include('sessioncheck.php');
                     </th>
 					<th>
                         Price
+                    </th>
+					<th>
+                        Payment
+                    </th>
+					<th>
+                        Status
                     </th>
                 </tr>
                 <?php
@@ -133,12 +170,95 @@ include('sessioncheck.php');
 						<td>
                             <span><?php echo $row1['cost']; ?></span>
                         </td>
+						<td>
+                            <span><?php echo $row1['payment']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row1['status']; ?></span>
+                        </td>
                     </tr>
                     <?php
                 }
                 ?>
             </table>
         </div>
+		
+		<div class="wrap-login100 dash" style="width: 75%;">
+            <span class="login100-form-title p-b-53">
+            Past Bookings
+          </span>
+            <table rules="all">
+                <tr>
+                    <th>
+                        Booking Id
+                    </th>
+                    <th>
+                        Licence No.
+                    </th>
+                    <th>
+                        Garage Name
+                    </th>
+                    <th>
+                        Lot Assigned
+                    </th>
+                    <th>
+                        Parked From
+                    </th>
+                    <th>
+                        Duration
+                    </th>
+					<th>
+                        Price
+                    </th>
+					<th>
+                        Payment
+                    </th>
+					<th>
+                        Status
+                    </th>
+                </tr>
+                <?php
+				$uid = $_SESSION['log']['useruid'];
+                $qry1 = mysqli_query($con,"SELECT * FROM booking where userid='$uid' and status='Left'");
+                while($row1 = mysqli_fetch_array($qry1))
+                {
+                    ?>
+                    <tr>
+                        <td>
+                            <span><?php echo $row1['bookingid']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['licencenum']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['garagelocation']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['lotnumber']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['fromtime']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['duration']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row1['cost']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row1['payment']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row1['status']; ?></span>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
+        </div>
+		
+		
     </div>
 </div>
 

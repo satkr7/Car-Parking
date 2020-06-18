@@ -60,19 +60,18 @@ include('sessioncheck.php');
           </span>
 
                 <?php
-                $fee = $_POST['fee'];
-                $id = $_POST['id'];
+                $amount = $_POST['amount'];
+                $id = $_SESSION['log']['useruid'];
                 ?>
                 <div class="wrap-input100 validate-input" >
-                    <input class="input100" type="text" name="card" placeholder="Card Number" required="required" />
+                    <input class="input100" type="text" name="card" placeholder="Enter your Card Number" required="required" />
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" >
-                    <input class="input100" type="text" name="fee" value="<?php echo $fee; ?>" readonly/>
+                    <input class="input100" type="text" name="amount" value="<?php echo "Rs ".$amount; ?>" readonly/>
                     <span class="focus-input100"></span>
                 </div>
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                 <div class="container-login100-form-btn m-t-17">
                     <button class="login100-form-btn">

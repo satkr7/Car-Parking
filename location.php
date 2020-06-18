@@ -1,13 +1,14 @@
 <?php
 session_start();
 include('config.php');
+include('sessioncheck.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Location Info</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -44,6 +45,28 @@ include('config.php');
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/util.css">
 
+    <style type="text/css">
+        table{
+            border: 1px solid #1a1a1a;
+            width: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+        th{
+            background: grey;
+            text-align: center;
+            vertical-align: middle;
+            color: skyblue;
+        }
+        .dash{
+            padding-top: 20px;
+            padding-right: 23px;
+            padding-left: 23px;
+            padding-bottom: 17px;
+
+        }
+    </style>
+
 </head>
 
 <body>
@@ -54,56 +77,67 @@ include('config.php');
 
 <div class="limiter">
     <div class="container-login100" style="background-image: url('img/carbgdash1.jpg');">
-        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-23">
-            <form class="login100-form validate-form flex-sb flex-w" method="post" action="signin.php">
-          <span class="login100-form-title p-b-53">
-            Sign In
+        <div class="wrap-login100 dash" style="width: 75%;">
+            <span class="login100-form-title p-b-53">
+            Garage Details
           </span>
-		  
-				<div class="wrap-input100 validate-input" data-validate="User Type is required">
-					<select class="input100" id="accounttype" name="accounttype"/>
-					<option value="none">Select Account Type</option>
-					<option value="customer">Customer</option>
-					<option value="owner">Garage Owner</option>
-                    <span class="focus-input100"></span>
-                </div>
-                <br>
-                <div class="wrap-input100 validate-input" data-validate = "Username is required">
-                    <input class="input100" type="email" name="mail" required="required" placeholder="Enter Email">
-                    <span class="focus-input100"></span>
-                </div>
-				<br>
-                <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    <input class="input100" type="password" name="pass" required="required" placeholder="Enter Password">
-                    <span class="focus-input100"></span>
-                </div>
-				<br>
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn">
-                        Sign In
-                    </button>
-                </div>
-
-                <div class="w-full text-center p-t-55">
-            <span class="txt2">
-              Not a member?
-            </span>
-
-                    <a href="signup.php" class="txt2 bo1">
-                        Sign up now
-                    </a><br>
-                    <a href="#" class="txt2 bo1 m-l-5">
-                        Forgot?
-                    </a>
-                </div>
-            </form>
+            <table rules="all">
+                <tr>
+                    <th>
+                        Garage Name
+                    </th>
+                    <th>
+                        Total Lots
+                    </th>
+                    <th>
+                        Lots Available
+                    </th>
+                    <th>
+                        Address of Garage
+                    </th>
+                    <th>
+                        Lattitude
+                    </th>
+                    <th>
+                        Longitude
+                    </th>
+                </tr>
+                <?php
+				$garagelocation = $_POST['lot'];
+                $qry1 = mysqli_query($con,"SELECT * FROM garage where lotname='$garagelocation'");
+                while($row1 = mysqli_fetch_array($qry1))
+                {
+                    ?>
+                    <tr>
+                        <td>
+                            <span><?php echo $row1['lotname']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['totallots']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['lots']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['address']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['latitude']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['longitude']; ?></span>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
         </div>
     </div>
 </div>
 
 <?php include('footer.php'); ?>
 <!-- #footer -->
-
 
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
