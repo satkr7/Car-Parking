@@ -75,50 +75,99 @@ include('sessioncheck.php');
 <!-- #header -->
 		
 		<div class="limiter">
-		<div class="container-login100">
-        <div class="login100-more" style="background-image: url('img/carbgdash1.jpg');"></div>
-
-        <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+					
+					<div class="container-login100">
+                    <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
             
-                    <form class="login100-form validate-form" method="post" action="book.php">
-                      
+                    <form class="login100-form validate-form" method="post" action="booking.php">
+                      <span class="login100-form-title p-b-59">
+                        Book a Parking Slot
+                      </span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Car No. is required">
+                            <span class="label-input100">Enter Your Licence No.</span>
+                            <input class="input100" type="text" name="licence" placeholder="Licence No." required="required">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate = "Lot No. is required">
+                            <span class="label-input100">Garage</span>
+                            <select class="input100" name="lot" required="required">
+                                <?php
+                                $qry = mysqli_query($con,"SELECT * FROM garage WHERE lots>0 ");
+                                while ($row = mysqli_fetch_array($qry)) {
+                                    ?>
+                                    <option value="<?php echo $row['lotname']; ?>"><?php echo $row['lotname']; ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                            <span class="focus-input100"></span>
+                        </div>
+						
+						
+						<div class="wrap-input100 validate-input" >
+							<input class="input100" type="datetime-local" name="datetimelocal">
+							<span class="focus-input100"></span>
+						</div>
+						
+
+                        <div class="wrap-input100 validate-input" data-validate="Duration is required">
+                            <span class="label-input100">Duration</span>
+                            <input class="input100" type="text" name="duration" placeholder="Duration in minutes" required="required">
+                            <span class="focus-input100"></span>
+                        </div>
+
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
                                 <button class="login100-form-btn">
-                                    Book Lot
+                                    Book Now
                                 </button>
                             </div>
 
                         </div>
                     </form>
-					<br>
-					<form class="login100-form validate-form" method="post" action="findgaragelocation.php">
-                      
+					</div>
+					</div>
+					
+					<div class="container-login100">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+                    <form class="login100-form validate-form" method="post" action="location.php">
+                      <span class="login100-form-title p-b-59">
+                        Find the garage location
+                      </span>
+
+                        <div class="wrap-input100 validate-input" data-validate = "Lot No. is required">
+                            <span class="label-input100">Garage</span>
+                            <select class="input100" name="lot" required="required">
+                                <?php
+                                $qry = mysqli_query($con,"SELECT * FROM garage");
+                                while ($row = mysqli_fetch_array($qry)) {
+                                    ?>
+                                    <option value="<?php echo $row['lotname']; ?>"><?php echo $row['lotname']; ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                            <span class="focus-input100"></span>
+                        </div>
+
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
                                 <button class="login100-form-btn">
-                                    Find Garage Location
+                                    Find Location
                                 </button>
                             </div>
 
                         </div>
                     </form>
-					<br>
-					<form class="login100-form validate-form" method="post" action="bookingmgr.php">
-                      
-                        <div class="container-login100-form-btn">
-                            <div class="wrap-login100-form-btn">
-                                <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn">
-                                    Booking Details
-                                </button>
-                            </div>
-
-                        </div>
-                    </form>
-					<br>
+					</div>
+					</div>
+					
+					<div class="container-login100">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
 					<form class="login100-form validate-form" method="post" action="dashboard.php">
                       
                         <div class="container-login100-form-btn">
@@ -131,7 +180,28 @@ include('sessioncheck.php');
 
                         </div>
                     </form>
-					<br>
+					</div>
+					</div>
+					
+					<div class="container-login100">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+					<form class="login100-form validate-form" method="post" action="bookingmgr.php">
+                      
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Booking Details
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+					</div>
+					</div>
+					
+					<div class="container-login100">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
 					<form class="login100-form validate-form" method="post" action="logout.php">
                       
                         <div class="container-login100-form-btn">
@@ -144,12 +214,10 @@ include('sessioncheck.php');
 
                         </div>
                     </form>
-					
-             
+					</div>
+					</div>
             
 				</div>
-			</div>
-		</div>
 
 <?php include('footer.php'); ?>
 <!-- #footer -->
