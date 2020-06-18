@@ -18,7 +18,7 @@ $qry = mysqli_query($con,"INSERT INTO booking (carowner, userid, licencenum, gar
 						VALUES ('$carownername', '$carownerid', '$licencenumber', '$garagelocation', '$lotnumber','$cost', '$duration', '$date', 'Due', 'Park') ");
 						
 $qry1 = mysqli_query($con,"UPDATE garage SET lots=lots-1 WHERE lotname='$garagelocation' ");
-header("location:bookinginfo.php");
+header("location:bookingmgr.php");
 
 /*
 if (mail($recipient, $subject, $message))

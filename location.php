@@ -136,6 +136,8 @@ include('sessioncheck.php');
     </div>
 </div>
 
+
+
 <?php include('footer.php'); ?>
 <!-- #footer -->
 

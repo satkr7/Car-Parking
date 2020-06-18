@@ -59,7 +59,7 @@ include('sessioncheck.php');
 
         <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
             
-                    <form class="login100-form validate-form" method="post" action="booklot.php">
+                    <form class="login100-form validate-form" method="post" action="booking.php">
                       <span class="login100-form-title p-b-59">
                         Book a Parking Slot
                       </span>
@@ -87,9 +87,10 @@ include('sessioncheck.php');
 						
 						
 						<div class="wrap-input100 validate-input" >
-							<input class="input100" type="datetime-local" name="datetimelocal" value="<?php echo date("Y-m-d\TH:i:s",time()); ?>" readonly/>
+							<input class="input100" type="datetime-local" name="datetimelocal">
 							<span class="focus-input100"></span>
 						</div>
+						
 
                         <div class="wrap-input100 validate-input" data-validate="Duration is required">
                             <span class="label-input100">Duration</span>

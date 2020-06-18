@@ -106,7 +106,7 @@ include('sessioncheck.php');
                         </div>
                     </form>
 					<br>
-					<form class="login100-form validate-form" method="post" action="bookinginfo.php">
+					<form class="login100-form validate-form" method="post" action="bookingmgr.php">
                       
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
