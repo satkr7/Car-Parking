@@ -2,29 +2,30 @@
 session_start();
 include('config.php');
 
-$car = $_POST['car'];
-$lot = $_POST['lot'];
-$uid = $_SESSION['log']['useruid'];
-$otp1 = mt_rand(100000,999999);
-$otp2 = mt_rand(100000,999999);
+$carownername = $_SESSION['log']['name'];
+$carownerid = $_SESSION['log']['useruid'];
+$licencenumber = $_POST['licence'];
+$garagelocation = $_POST['lot'];
+$duration = $_POST['duration'];
+$cost = $duration * 2;
+$date = $_POST['datetimelocal'];
 
-$from = "iemsatyam@gmail.com";
-$email = $_SESSION['log']['email'];
-$recipient = $email;
-$subject = "Car Parking System OTP";
-$message = "Message via Car Parking System. This is your OTP1 (Enter while you park your car) ".$otp1." . This is your OTP2 (Enter while you leave the Parking Lot) ".$otp2." ." ;
-$headers = 'From:' . $from;
+$qry0 = mysqli_query($con,"SELECT * FROM garage ");
+$row = mysqli_fetch_array($qry0);
+$lotnumber = $row['lots'];
+
+$qry = mysqli_query($con,"INSERT INTO booking (carowner, userid, licencenum, garagelocation, lotnumber, cost, duration, fromtime, payment, status) 
+						VALUES ('$carownername', '$carownerid', '$licencenumber', '$garagelocation', '$lotnumber','$cost', '$duration', '$date', 'Due', 'Park') ");
+						
+$qry1 = mysqli_query($con,"UPDATE garage SET lots=lots-1 WHERE lotname='$garagelocation' ");
+header("location:bookinginfo.php");
+
 /*
-$qry = mysqli_query($con,"INSERT INTO logtable (useruid, lotname, carno, otp1, otp2) VALUES ('$uid', '$lot', '$car', '$otp1', '$otp2') ");
-$qry1 = mysqli_query($con,"UPDATE lot SET status='Ongoing Booking' WHERE lotname='$lot' ");
-header("location:verify.php");
-*/
-
 if (mail($recipient, $subject, $message))
 {
     $qry = mysqli_query($con,"INSERT INTO logtable (useruid, lotname, carno, otp1, otp2) VALUES ('$uid', '$lot', '$car', '$otp1', '$otp2') ");
     $qry1 = mysqli_query($con,"UPDATE lot SET status='Ongoing Booking' WHERE lotname='$lot' ");
     header("location:verify.php");
 }
-
+*/
 ?>

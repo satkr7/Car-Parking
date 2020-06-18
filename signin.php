@@ -14,7 +14,7 @@ if($qry1 and $type=='customer')
     $_SESSION['log']=$row;
     $keys="user";
     $_SESSION['log1']=$keys;
-    header("location:dashboard.php");
+    header("location:bookingUI.php");
 }
 else if($qry1 and $type=='owner')
 {

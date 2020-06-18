@@ -2,14 +2,13 @@
 session_start();
 include('config.php');
 include('sessioncheck.php');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Free Lots</title>
+    <title>Booking Info</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -51,11 +50,12 @@ include('sessioncheck.php');
             border: 1px solid #1a1a1a;
             width: 100%;
             text-align: center;
+            vertical-align: middle;
         }
-        td{
-            height: 250px;
-        }
-        a{
+        th{
+            background: grey;
+            text-align: center;
+            vertical-align: middle;
             color: skyblue;
         }
         .dash{
@@ -78,65 +78,65 @@ include('sessioncheck.php');
 <div class="limiter">
     <div class="container-login100" style="background-image: url('img/carbgdash1.jpg');">
         <div class="wrap-login100 dash" style="width: 75%;">
-        <span class="login100-form-title p-b-53">
-            Current Status
+            <span class="login100-form-title p-b-53">
+            Your Bookings
           </span>
             <table rules="all">
                 <tr>
-                    <?php
-                    $qry = mysqli_query($con,"SELECT * FROM garage ");
-                    $c=0;
-                    while($row = mysqli_fetch_array($qry) and $c < 5)
-                    {
-                        $c = $c+1;
-                        if($row['lots']>0)
-                        {
-                            ?>
-                            <td>
-                                <span><a href="book.php">Book Now<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
-                            </td>
-                            <?php
-                        }
-                        else
-                        {
-                            ?>
-                            <td style="background: #1a1a1a;">
-                                <span><a href="#">Garage Full<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
-                            </td>
-                            <?php
-                        }
-                    }
-                    ?>
+                    <th>
+                        Booking Id
+                    </th>
+                    <th>
+                        Licence No.
+                    </th>
+                    <th>
+                        Garage Name
+                    </th>
+                    <th>
+                        Lot Assigned
+                    </th>
+                    <th>
+                        Parked From
+                    </th>
+                    <th>
+                        Duration
+                    </th>
+					<th>
+                        Price
+                    </th>
                 </tr>
-                <tr>
-                    <?php
-                    $qry = mysqli_query($con,"SELECT * FROM garage ");
-                    $c=0;
-                    while($row = mysqli_fetch_array($qry) )
-                    {
-                        $c = $c+1;
-                        if($c > 5)
-                        {
-                            if($row['lots']>0)
-                            {
-                                ?>
-                            <td>
-                                <span><a href="book.php">Book Now<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
-                            </td>
-                            <?php
-                            }
-                            else
-                            {
-                                ?>
-                            <td style="background: #1a1a1a;">
-                                <span><a href="#">Garage Full<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
-                            </td>
-                            <?php
-                            }
-                        }
-                    }
+                <?php
+				$uid = $_SESSION['log']['useruid'];
+                $qry1 = mysqli_query($con,"SELECT * FROM booking where userid='$uid' and status='Park'");
+                while($row1 = mysqli_fetch_array($qry1))
+                {
                     ?>
-                </tr>
+                    <tr>
+                        <td>
+                            <span><?php echo $row1['bookingid']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['licencenum']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['garagelocation']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['lotnumber']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['fromtime']; ?></span>
+                        </td>
+                        <td>
+                            <span><?php echo $row1['duration']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row1['cost']; ?></span>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
             </table>
         </div>
     </div>

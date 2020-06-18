@@ -67,26 +67,14 @@ include('config.php');
 					<option value="owner">Garage Owner</option>
                     <span class="focus-input100"></span>
                 </div>
-
-                <div class="p-t-31 p-b-9">
-            <span class="txt1">
-              Email
-            </span>
-                </div>
+                
                 <div class="wrap-input100 validate-input" data-validate = "Username is required">
-                    <input class="input100" type="email" name="mail" required="required">
+                    <input class="input100" type="email" name="mail" required="required" placeholder="Enter Email">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="p-t-13 p-b-9">
-            <span class="txt1">
-              Password
-            </span>
-
-
-                </div>
                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    <input class="input100" type="password" name="pass" required="required">
+                    <input class="input100" type="password" name="pass" required="required" placeholder="Enter Password">
                     <span class="focus-input100"></span>
                 </div>
 

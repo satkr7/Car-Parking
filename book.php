@@ -55,35 +55,26 @@ include('sessioncheck.php');
 
 <div class="limiter">
     <div class="container-login100">
-        <div class="login100-more" style="background-image: url('img/carbgdash.jpg');"></div>
+        <div class="login100-more" style="background-image: url('img/carbgdash1.jpg');"></div>
 
         <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-            <?php
-            $uid = $_SESSION['log']['useruid'];
-            $qry = mysqli_query($con,"SELECT * FROM logtable WHERE useruid='$uid' ORDER BY id DESC");
-            $qry1 = mysqli_num_rows($qry);
-            if($qry1)
-            {
-                $row = mysqli_fetch_array($qry);
-                if($row['payment']=='Paid')
-                {
-                    ?>
+            
                     <form class="login100-form validate-form" method="post" action="booklot.php">
                       <span class="login100-form-title p-b-59">
-                        Book a Free Slot
+                        Book a Parking Slot
                       </span>
 
                         <div class="wrap-input100 validate-input" data-validate="Car No. is required">
-                            <span class="label-input100">Car No.</span>
-                            <input class="input100" type="text" name="car" placeholder="Car No...." required="required">
+                            <span class="label-input100">Enter Your Licence No.</span>
+                            <input class="input100" type="text" name="licence" placeholder="Licence No." required="required">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate = "Lot No. is required">
-                            <span class="label-input100">Parking Lot</span>
+                            <span class="label-input100">Garage</span>
                             <select class="input100" name="lot" required="required">
                                 <?php
-                                $qry = mysqli_query($con,"SELECT * FROM lot WHERE status='Free' or status='Leaving' ");
+                                $qry = mysqli_query($con,"SELECT * FROM garage WHERE lots>0 ");
                                 while ($row = mysqli_fetch_array($qry)) {
                                     ?>
                                     <option value="<?php echo $row['lotname']; ?>"><?php echo $row['lotname']; ?></option>
@@ -93,21 +84,17 @@ include('sessioncheck.php');
                             </select>
                             <span class="focus-input100"></span>
                         </div>
+						
+						
+						<div class="wrap-input100 validate-input" >
+							<input class="input100" type="datetime-local" name="datetimelocal" value="<?php echo date("Y-m-d\TH:i:s",time()); ?>" readonly/>
+							<span class="focus-input100"></span>
+						</div>
 
-                        <div class="flex-m w-full p-b-33">
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" required="required">
-                                <label class="label-checkbox100" for="ckb1">
-                                <span class="txt1">
-                                  I agree to the
-                                  <a href="#" class="txt2 hov1">
-                                    Terms of User
-                                  </a>
-                                </span>
-                                </label>
-                            </div>
-
-
+                        <div class="wrap-input100 validate-input" data-validate="Duration is required">
+                            <span class="label-input100">Duration</span>
+                            <input class="input100" type="text" name="duration" placeholder="Duration in minutes" required="required">
+                            <span class="focus-input100"></span>
                         </div>
 
                         <div class="container-login100-form-btn">
@@ -120,77 +107,8 @@ include('sessioncheck.php');
 
                         </div>
                     </form>
-                    <?php
-                }
-                else
-                {
-                    ?>
-                    <form class="login100-form validate-form" method="post" action="booklot.php">
-                      <span class="login100-form-title p-b-59">
-                        Lot Already Booked!
-                      </span>
-                    </form>
-                    <?php
-                }
-            }
-            else
-            {
-                ?>
-                <form class="login100-form validate-form" method="post" action="booklot.php">
-                    <span class="login100-form-title p-b-59">
-                        Book a Free Slot
-                    </span>
-
-                    <div class="wrap-input100 validate-input" data-validate="Car No. is required">
-                        <span class="label-input100">Car No.</span>
-                        <input class="input100" type="text" name="car" placeholder="Car No...." required="required">
-                        <span class="focus-input100"></span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate = "Lot No. is required">
-                        <span class="label-input100">Parking Lot</span>
-                        <select class="input100" name="lot" required="required">
-                            <?php
-                            $qry = mysqli_query($con,"SELECT * FROM lot WHERE status='Free' or status='Leaving' ");
-                            while ($row = mysqli_fetch_array($qry)) {
-                                ?>
-                                <option value="<?php echo $row['lotname']; ?>"><?php echo $row['lotname']; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                        <span class="focus-input100"></span>
-                    </div>
-
-                    <div class="flex-m w-full p-b-33">
-                        <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" required="required">
-                            <label class="label-checkbox100" for="ckb1">
-                <span class="txt1">
-                  I agree to the
-                  <a href="#" class="txt2 hov1">
-                    Terms of User
-                  </a>
-                </span>
-                            </label>
-                        </div>
-
-
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
-                                Book Now
-                            </button>
-                        </div>
-
-                    </div>
-                </form>
-                <?php
-            }
-            ?>
+             
+            
         </div>
     </div>
 </div>

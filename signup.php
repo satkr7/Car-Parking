@@ -120,8 +120,6 @@
                 </span>
                         </label>
                     </div>
-
-
                 </div>
 
                 <div class="container-login100-form-btn">
