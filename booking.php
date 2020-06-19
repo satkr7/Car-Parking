@@ -1,31 +1,45 @@
 <?php
 session_start();
-include('config.php');
 
-$carownername = $_SESSION['log']['name'];
-$carownerid = $_SESSION['log']['useruid'];
-$licencenumber = $_POST['licence'];
-$garagelocation = $_POST['lot'];
-$duration = $_POST['duration'];
-$cost = $duration * 2;
-$date = $_POST['datetimelocal'];
+class BookingClass
+{	
+	public $lotnumber;
+	
+	function insertBooking($con, $carownername, $carownerid, $licencenumber, $garagelocation, $duration, $date)
+	{
+		$cost = $duration * 2;
+		$qry0 = mysqli_query($con,"SELECT * FROM garage where lotname='$garagelocation'");
+		$row = mysqli_fetch_array($qry0);
+		$lotnumber = $row['lots'];
 
-$qry0 = mysqli_query($con,"SELECT * FROM garage where lotname='$garagelocation'");
-$row = mysqli_fetch_array($qry0);
-$lotnumber = $row['lots'];
+		$qry0 = mysqli_query($con,"SELECT * FROM garage where lotname='$garagelocation'");
+		$row = mysqli_fetch_array($qry0);
+		$lotnumber = $row['lots'];
 
-$qry = mysqli_query($con,"INSERT INTO booking (carowner, userid, licencenum, garagelocation, lotnumber, cost, duration, fromtime, payment, status) 
+		$qry = mysqli_query($con,"INSERT INTO booking (carowner, userid, licencenum, garagelocation, lotnumber, cost, duration, fromtime, payment, status) 
 						VALUES ('$carownername', '$carownerid', '$licencenumber', '$garagelocation', '$lotnumber','$cost', '$duration', '$date', 'Due', 'Park') ");
-						
-$qry1 = mysqli_query($con,"UPDATE garage SET lots=lots-1 WHERE lotname='$garagelocation' ");
-header("location:bookingmgr.php");
-
-/*
-if (mail($recipient, $subject, $message))
-{
-    $qry = mysqli_query($con,"INSERT INTO logtable (useruid, lotname, carno, otp1, otp2) VALUES ('$uid', '$lot', '$car', '$otp1', '$otp2') ");
-    $qry1 = mysqli_query($con,"UPDATE lot SET status='Ongoing Booking' WHERE lotname='$lot' ");
-    header("location:verify.php");
+		
+	}
+	
+	function updateGarageLots($con, $garagelocation)
+	{
+		$qry1 = mysqli_query($con,"UPDATE garage SET lots=lots-1 WHERE lotname='$garagelocation' ");
+	}
+	
+	function sendConfirmationMail($recipient, $garagelocation, $date, $duration, $carownername, $cost)
+	{
+		$subject = "Booking Confirmed";
+		$message = "Hello ".$carownername.", Your booking is confirmed at garage: ".$garagelocation." from ".$date." for duration of ".$duration.". You need to pay Rs".$cost.".";
+		
+		if (mail($recipient, $subject, $message))
+		{
+			return "Mail Sent!";
+		}
+	}
+	
 }
-*/
+
+
 ?>
+
+

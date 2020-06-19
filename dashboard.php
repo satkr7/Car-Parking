@@ -93,7 +93,7 @@ include('sessioncheck.php');
                         {
                             ?>
                             <td>
-                                <span><a href="book.php">Book Now<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
+                                <span><a href="bookingUI.php">Book Now<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
                             </td>
                             <?php
                         }
@@ -121,7 +121,7 @@ include('sessioncheck.php');
                             {
                                 ?>
                             <td>
-                                <span><a href="book.php">Book Now<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
+                                <span><a href="bookingUI.php">Book Now<br>Garage - <?php echo $row['lotname']; ?><br>Lots available - <?php echo $row['lots']; ?><br>Total num of Lots - <?php echo $row['totallots']; ?></a></span>
                             </td>
                             <?php
                             }

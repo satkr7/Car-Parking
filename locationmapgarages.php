@@ -16,7 +16,7 @@ $long = $row['longitude'];
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=loadMap">
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaCG3lYkCLnzQxDzGYQhNf8t2Se3QIxyo&callback=loadMap">
 	</script>
 	
 	<script>

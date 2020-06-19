@@ -6,7 +6,7 @@ $id = $_SESSION['log']['useruid'];
 $fee = $_POST['amount'];
 
 
-$qry = mysqli_query($con,"SELECT * FROM booking WHERE userid='$id' ");
+$qry = mysqli_query($con,"SELECT * FROM booking WHERE userid='$id' and status='Park'");
 while($row = mysqli_fetch_array($qry))
 {
 	$lot = $row['garagelocation'];
