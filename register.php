@@ -26,7 +26,7 @@ if($qry1==0 and $passwrd==$repasswrd)
     $_SESSION['log']=$row;
     $keys="user";
     $_SESSION['log1']=$keys;
-    header("location:dashboard.php");
+    header("location:bookingUI.php");
 }
 else
 {
