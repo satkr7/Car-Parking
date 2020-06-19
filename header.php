@@ -61,9 +61,6 @@ else if($_SESSION['log1']=="user")
                     <li class="menu-has-children"><a href="dashboard.php">Home</a>
                     </li>
 
-                    <li class="menu-has-children"><a href="book.php">Book Slot</a>
-                    </li>
-
                     <li class="menu-has-children"><a>Contact Us</a>
                     </li>
 
