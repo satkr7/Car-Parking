@@ -3,7 +3,7 @@ session_start();
 include('config.php');
 include('sessioncheck.php');
 
-$qry = mysqli_query($con,"SELECT * FROM garage");
+$qry = mysqli_query($con,"SELECT * FROM garage where lotname='Technopolis'");
 $row = mysqli_fetch_array($qry);
 
 $lat = $row['latitude'];
@@ -16,7 +16,7 @@ $long = $row['longitude'];
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaCG3lYkCLnzQxDzGYQhNf8t2Se3QIxyo&callback=loadMap">
+		src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=loadMap">
 	</script>
 	
 	<script>
@@ -58,7 +58,7 @@ $long = $row['longitude'];
 	
 	<body>
 		<div class="container">
-			<center><h1> Garage Location on Google Maps of <?php echo $garagename; ?></h1></center>
+			<center><h1> Garage Location on Google Maps <?php echo $lat." ".$long; ?></h1></center>
 			<div id="map"></div>
 		</div>
 	</body>

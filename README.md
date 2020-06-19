@@ -1,9 +1,37 @@
 # Online Car Parking Website
 
-[Project Wiki](http://103.127.146.165/wiki/index.php?title=Transformers:Main)
 
-## Problem Statement
-In this modern society, there is an ever-increasing number of vehicles increasing difficulty to find open spaces in busy parking lots. It becomes even more disappointing when someone reaches his/her destination and is welcomed by packed up parking facilities without any empty space to park vehicles.
+## About the Project
+Online Parking finder website provides a platform for the user to find a parking slot. Garage Owners can register their garages to the website and make money out of it.
 
-## Solution Statement
-Online Parking finder will provide a great platform for the user to search for the nearest availability of parking and the available results near the destination entered, will be displayed to the user. A user can pre-book spots at given destinations according to their plans and can also ask for future availabilities of the parking spot which will be notified by the system.\
+## Project Implementation
+* Backend: PHP
+* Frontend: HTML, CSS
+* Database: MySQL
+
+## Setup:
+* Clone the repository
+* Setup a server (XAMPP)
+* Unzip the repository in ../xampp/htdocs/
+* Import "database/carparkingsystem.sql" in PHPMyAdmin
+* Edit your credentials in "config.php" for localhost, user, password, database
+```python
+$con = mysqli_connect("localhost", "user", "password");
+$db = mysqli_select_db($con, "databaseName");
+```
+* Get your API key from [developer.google.com](https://console.developers.google.com/) and replace "YOUR_API_KEY" with your key in "locationmap.php" and "locationmapgarages.php"
+```javascript
+<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=loadMap">
+</script>
+```
+* Run Online Parking finder website on localhost
+
+
+## Developers
+
+[Transformer Team](http://103.127.146.165/wiki/index.php?title=Transformers:Main)
+
+
+
+
