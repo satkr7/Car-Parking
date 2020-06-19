@@ -122,10 +122,13 @@ else if($_SESSION['log1']=="owner")
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
 
-                    <li class="menu-has-children"><a>Add new Lot</a>
+					<li class="menu-has-children"><a href="garageowner.php">Home</a>
+                    </li>
+					
+                    <li class="menu-has-children"><a href="registerGarageUI.php">Register new Garage</a>
                     </li>
 
-                    <li class="menu-has-children"><a>Remove Lot</a>
+                    <li class="menu-has-children"><a>Remove Garage</a>
                     </li>
 
                     <li class="menu-has-children"><a href="logout.php">Logout</a>

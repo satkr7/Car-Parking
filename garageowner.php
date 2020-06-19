@@ -79,20 +79,26 @@ include('sessioncheck.php');
     <div class="container-login100" style="background-image: url('img/carbgdash1.jpg');">
         <div class="wrap-login100 dash" style="width: 75%;">
         <span class="login100-form-title p-b-53">
-            Current Status
+            Your Garages
           </span>
             <table rules="all">
                 <tr>
                     <th>
-                        Lot Name
+                        Garage Name
+                    </th>
+					<th>
+                        Address of Garage
                     </th>
                     <th>
-                        Status
+                        Lots available
+                    </th>
+					<th>
+                        Total Lots
                     </th>
                 </tr>
                 <?php
 				$uid = $_SESSION['log']['useruid'];
-                $qry = mysqli_query($con,"SELECT * FROM lot where ownerid='$uid'");
+                $qry = mysqli_query($con,"SELECT * FROM garage where ownerid='$uid'");
                 while($row = mysqli_fetch_array($qry))
                 {
                     ?>
@@ -101,67 +107,20 @@ include('sessioncheck.php');
                             <span><?php echo $row['lotname']; ?></span>
                         </td>
                         <td>
-                            <span><?php echo $row['status']; ?></span>
+                            <span><?php echo $row['address']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row['lots']; ?></span>
+                        </td>
+						<td>
+                            <span><?php echo $row['totallots']; ?></span>
                         </td>
                     </tr>
                     <?php
                 }
                 ?>
             </table>
-            <span class="login100-form-title p-b-53">
-            Booking History
-          </span>
-            <table rules="all">
-                <tr>
-                    <th>
-                        User UID
-                    </th>
-                    <th>
-                        Car No.
-                    </th>
-                    <th>
-                        Lot Name
-                    </th>
-                    <th>
-                        From
-                    </th>
-                    <th>
-                        To
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                </tr>
-                <?php
-				$uid = $_SESSION['log']['useruid'];
-                $qry1 = mysqli_query($con,"SELECT * FROM logtable");
-                while($row1 = mysqli_fetch_array($qry1))
-                {
-                    ?>
-                    <tr>
-                        <td>
-                            <span><?php echo $row1['useruid']; ?></span>
-                        </td>
-                        <td>
-                            <span><?php echo $row1['carno']; ?></span>
-                        </td>
-                        <td>
-                            <span><?php echo $row1['lotname']; ?></span>
-                        </td>
-                        <td>
-                            <span><?php echo $row1['fromtime']; ?></span>
-                        </td>
-                        <td>
-                            <span><?php echo $row1['totime']; ?></span>
-                        </td>
-                        <td>
-                            <span><?php echo $row1['status']; ?></span>
-                        </td>
-                    </tr>
-                    <?php
-                }
-                ?>
-            </table>
+			
         </div>
     </div>
 </div>
