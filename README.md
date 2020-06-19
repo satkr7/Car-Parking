@@ -5,9 +5,10 @@
 Online Parking finder website provides a platform for the user to find a parking slot. Garage Owners can register their garages to the website and make money out of it.
 
 ## Project Implementation
-* Backend: PHP
+* Server version: 10.4.11-MariaDB
+* Backend: PHP Version: 7.2.31
 * Frontend: HTML, CSS
-* Database: MySQL
+* Database: MySQL Version: 5.0.2
 
 ## Setup:
 * Clone the repository
