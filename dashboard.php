@@ -139,6 +139,25 @@ include('sessioncheck.php');
                 </tr>
             </table>
         </div>
+		
+				<!-- view garage location on map -->
+					<div class="container-login100">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+					<form class="login100-form validate-form" method="post" action="locationmapgarages.php">
+                    <input type="hidden" name="garagename" value="<?php echo $garagename; ?>">  
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    View Garage Location on Google Maps
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+					</div>
+					</div>
+		
     </div>
 </div>
 

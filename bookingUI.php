@@ -76,6 +76,7 @@ include('sessioncheck.php');
 		
 		<div class="limiter">
 					
+					<!-- Book Slot -->
 					<div class="container-login100">
                     <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
             
@@ -131,6 +132,7 @@ include('sessioncheck.php');
 					</div>
 					</div>
 					
+					<!-- Find the garage location -->
 					<div class="container-login100">
 					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
                     <form class="login100-form validate-form" method="post" action="location.php">
@@ -166,23 +168,7 @@ include('sessioncheck.php');
 					</div>
 					</div>
 					
-					<div class="container-login100">
-					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-					<form class="login100-form validate-form" method="post" action="dashboard.php">
-                      
-                        <div class="container-login100-form-btn">
-                            <div class="wrap-login100-form-btn">
-                                <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn">
-                                    Search Parking Lots
-                                </button>
-                            </div>
-
-                        </div>
-                    </form>
-					</div>
-					</div>
-					
+					<!-- Booking Details -->
 					<div class="container-login100">
 					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
 					<form class="login100-form validate-form" method="post" action="bookingmgr.php">
@@ -192,6 +178,24 @@ include('sessioncheck.php');
                                 <div class="login100-form-bgbtn"></div>
                                 <button class="login100-form-btn">
                                     Booking Details
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+					</div>
+					</div>
+					
+					<!-- Search Parking Lot -->
+					<div class="container-login100">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+					<form class="login100-form validate-form" method="post" action="dashboard.php">
+                      
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn">
+                                    Search Parking Lots
                                 </button>
                             </div>
 
