@@ -71,11 +71,9 @@ include('sessioncheck.php');
 
 <body>
 <div id="preloader"></div>
-
 <!-- #header -->
 		
 		<div class="limiter">
-					
 					<!-- Book Slot -->
 					<div class="container-login100">
                     <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
@@ -87,7 +85,7 @@ include('sessioncheck.php');
 
                         <div class="wrap-input100 validate-input" data-validate="Car No. is required">
                             <span class="label-input100">Enter Your Licence No.</span>
-                            <input class="input100" type="text" name="licence" placeholder="Licence No." required="required">
+                            <input class="input100" type="number" name="licence" placeholder="Licence No." oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" min="0" max="9999" required >
                             <span class="focus-input100"></span>
                         </div>
 
@@ -115,7 +113,7 @@ include('sessioncheck.php');
 
                         <div class="wrap-input100 validate-input" data-validate="Duration is required">
                             <span class="label-input100">Duration</span>
-                            <input class="input100" type="text" name="duration" placeholder="Duration in minutes" required="required">
+                            <input class="input100" type="number" name="duration" placeholder="Duration in minutes" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  min="1"  required >
                             <span class="focus-input100"></span>
                         </div>
 
